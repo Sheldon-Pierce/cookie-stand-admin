@@ -8,6 +8,8 @@ export default function ReportTable ({listOfReports}) {
     const {resources, loading, createResource, deleteResource} = useResource();
 
     console.log(listOfReports)
+    console.log(resources)
+
     function footerTotals() {
         let grandTotal = []
         for(let i = 0; i < hours.length; i++){
@@ -48,11 +50,11 @@ export default function ReportTable ({listOfReports}) {
                     </tr>
                 </thead>
                 <tbody className='border border-gray-400 even:bg-green-200 odd:bg-green-300'>
-                    {listOfReports.map(location => (
+                    {resources.map(location => (
                         <tr className='border border-gray-400 even:bg-green-200 odd:bg-green-300'>
-                            <td className='text-center' key={location}>
+                            <td className='text-center' key={location.id}>
                                 {location.location}
-                                <span onClick={() => deleteResource(location)}> [x] </span>
+                                <span onClick={() => deleteResource(location.id)}> [x] </span>
                             </td>
                             {location.hourly_sales.map(list =>(
                                 <td className='text-center border border-gray-400' key='list'>

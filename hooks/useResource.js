@@ -41,7 +41,8 @@ export default function useResource() {
     }
 
     async function deleteResource(id) {
-
+        console.log(id)
+        console.log(apiUrl)
         try {
             const url = apiUrl + id;
             const options = config();

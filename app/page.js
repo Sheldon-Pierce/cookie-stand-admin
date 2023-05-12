@@ -13,6 +13,8 @@ export default function Home() {
     const { user, login, logout} = useAuth();
     const [reports, setReports] = useState([]);
     const {resources, loading, createResource, deleteResource} = useResource();
+    console.log(resources)
+    console.log(user)
 
     function handleReports(event) {
         event.preventDefault()
@@ -41,8 +43,8 @@ export default function Home() {
         {user ? (
             <>
                 <Header username={user} loggingout={logout}/>
-                <Main reports={reports} handlereports={handleReports}/>
-                <Footer reports={reports}/>
+                <Main reports={resources} handlereports={handleReports}/>
+                <Footer reports={resources}/>
             </>
 
         ) : (
