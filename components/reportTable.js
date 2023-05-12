@@ -1,6 +1,11 @@
 import {hours} from "@/app/data";
+import useResource from "@/hooks/useResource";
+import { ReactComponent as Trash } from 'public/trash.svg'
+
 
 export default function ReportTable ({listOfReports}) {
+
+    const {resources, loading, createResource, deleteResource} = useResource();
 
     console.log(listOfReports)
     function footerTotals() {
@@ -8,10 +13,8 @@ export default function ReportTable ({listOfReports}) {
         for(let i = 0; i < hours.length; i++){
             let totalAtHour = []
             for(let j = 0; j < listOfReports.length; j++){
-                console.log(totalAtHour)
-                totalAtHour.push(listOfReports[j].totals[i]);
+                totalAtHour.push(listOfReports[j].hourly_sales[i]);
             }
-            console.log(grandTotal)
             grandTotal.push(totalAtHour.reduce((acc, cur) => acc + cur, 0))
         }
         return grandTotal
@@ -20,7 +23,7 @@ export default function ReportTable ({listOfReports}) {
     function finalTotal() {
         let total = 0
         for(let store of listOfReports) {
-            total += store.totals.reduce((acc, cur) => acc + cur, 0)
+            total += store.hourly_sales.reduce((acc, cur) => acc + cur, 0)
         }
         return total
     }
@@ -49,14 +52,15 @@ export default function ReportTable ({listOfReports}) {
                         <tr className='border border-gray-400 even:bg-green-200 odd:bg-green-300'>
                             <td className='text-center' key={location}>
                                 {location.location}
+                                <span onClick={() => deleteResource(location)}> [x] </span>
                             </td>
-                            {location.totals.map(list =>(
+                            {location.hourly_sales.map(list =>(
                                 <td className='text-center border border-gray-400' key='list'>
                                     {list}
                                 </td>
                                 ))}
                                 <td className='text-center'>
-                                    {location.totals.reduce((acc, list) => acc + list, 0)}
+                                    {location.hourly_sales.reduce((acc, list) => acc + list, 0)}
                                 </td>
                         </tr>
                     ))}

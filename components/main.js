@@ -1,38 +1,16 @@
 import ReportTable from "@/components/reportTable";
 import CreateForm from "@/components/createForm";
-import {useState} from "react";
-import {hours} from "@/app/data";
 
-export default function Main () {
+export default function Main ({reports, handlereports}) {
 
-   const [reports, setReports] = useState([]);
-
-    function handleReports(event) {
-        event.preventDefault()
-        let reportObj = {
-            location: event.target.location.value,
-            min_cust: event.target.min_cust.value,
-            max_cust: event.target.max_cust.value,
-            avg_cookies: event.target.avg_cookies.value,
-            totals: SalesDataMath(event.target.max_cust.value, event.target.min_cust.value, event.target.avg_cookies.value)
-        }
-        setReports([...reports, reportObj])
-    }
-
-    function SalesDataMath(max, min, avg) {
-        let sales_numbers = []
-        for (let i = 0; i < hours.length; i++) {
-            sales_numbers.push(Math.floor(Math.random() * (max - min) * avg))
-        }
-        return sales_numbers
-    }
+    console.log(reports)
 
     return (
         <>
             <main className='h=2/3 bg-white h-4/5'>
             <div className="flex items-center justify-center bg-white">
-                <div className='w-3/5 mt-14 mx-20 rounded-[20px] bg-green-300 mx-15 h-max'>
-                    <CreateForm onFormSubmit={handleReports} />
+                <div className='w-2/4 mt-14 mx-20 rounded-[20px] bg-green-300 mx-15 h-max'>
+                    <CreateForm onFormSubmit={handlereports} />
                 </div>
             </div>
                 {reports.length ?
