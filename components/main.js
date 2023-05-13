@@ -3,8 +3,6 @@ import CreateForm from "@/components/createForm";
 
 export default function Main ({reports, handlereports}) {
 
-    console.log({reports})
-
     return (
         <>
             <main className='h=2/3 bg-white h-4/5'>
@@ -13,7 +11,7 @@ export default function Main ({reports, handlereports}) {
                     <CreateForm onFormSubmit={handlereports} />
                 </div>
             </div>
-                {reports ?
+                {reports && reports.length ?
                     <div className="flex items-center justify-center">
                         <div className='w-3/5 mt-6 mb-6'>
                             <ReportTable listOfReports={reports} />

@@ -3,7 +3,6 @@ import { useAuth } from '@/contexts/auth'
 export default function Header ({username}) {
 
     const { user, logout } = useAuth();
-    console.log(username.username)
 
     return (
         <>
@@ -13,7 +12,7 @@ export default function Header ({username}) {
                         Cookie Stand Admin
                     </text>
                     <div className='flex justify-center'>
-                        <text className='bg-green-200 rounded text-sm align-right px-2 py-1 m-4'>
+                        <text className='bg-green-200 rounded text-sm align-center px-2 py-1 m-4'>
                             Welcome {username.username}
                         </text>
                         <button onClick={logout} className='bg-green-700 rounded text-sm align-right px-2 py-1 m-4'>

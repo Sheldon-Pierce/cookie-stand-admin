@@ -13,8 +13,6 @@ export default function Home() {
     const { user, login, logout} = useAuth();
     const [reports, setReports] = useState([]);
     const {resources, loading, createResource, deleteResource} = useResource();
-    console.log(resources)
-    console.log(user)
 
     function handleReports(event) {
         event.preventDefault()
@@ -23,7 +21,8 @@ export default function Home() {
             minimum_customers_per_hour: parseInt(event.target.min_cust.value),
             maximum_customers_per_hour: parseInt(event.target.max_cust.value),
             average_cookies_per_sale: parseInt(event.target.avg_cookies.value),
-            hourly_sales: SalesDataMath(event.target.max_cust.value, event.target.min_cust.value, event.target.avg_cookies.value)
+            hourly_sales: SalesDataMath(event.target.max_cust.value, event.target.min_cust.value, event.target.avg_cookies.value),
+            owner: user.id
         }
         createResource(reportObj)
         setReports([...reports, reportObj])
